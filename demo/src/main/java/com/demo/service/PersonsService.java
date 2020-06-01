@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.demo.exception.RecordNotFoundException;
 import com.demo.model.PersonsEntity;
@@ -20,15 +21,15 @@ public class PersonsService {
     @Autowired
     PersonsRepository repository;
     
-    
-    public List<PersonsEntity> getAllPersons() throws RecordNotFoundException
+   
+    public List<PersonsEntity> getAllPersons()
     {
     	List<PersonsEntity> personsList = repository.findAll();
     	if (!personsList.isEmpty()){
     		 return  personsList;
     	}
     	else {
-    		  throw new RecordNotFoundException("No Persons record exists");
+    		  throw new RecordNotFoundException();
     	}
     }
      
@@ -39,7 +40,7 @@ public class PersonsService {
     		return filteredList;
     	}
     	else {
-  		  throw new RecordNotFoundException("No Persons age is greater than 20");
+    		  throw new RecordNotFoundException();
   	}
     	
     }
@@ -76,7 +77,7 @@ public class PersonsService {
         {
             repository.deleteById(id);
         } else {
-            throw new RecordNotFoundException("No Persons record exist for given id");
+        	  throw new RecordNotFoundException();
         }
     }
 }

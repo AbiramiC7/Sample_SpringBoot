@@ -24,8 +24,16 @@ public class PersonsEntity {
   
     @Column(name="gender")
     private String gender;
+    public PersonsEntity() {
+		// TODO Auto-generated constructor stub
+	}
+
     
-    public String getGender() {
+    public PersonsEntity(String string, String string2, String string3, int i) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getGender() {
 		return gender;
 	}
 
